@@ -1,0 +1,103 @@
+{
+  "owner": "JUTZUGC",
+  "code": "JUTZUGC",
+  "project": {
+    "key": "blaze",
+    "nameCn": "Blaze",
+    "repoName": "blaze-deploy-guide",
+    "oneLiner": "1.6k stars，Apache-2.0，把 Rust 重编译压到毫秒级的构建工具",
+    "officialRepo": "https://github.com/indexable-inc/blaze",
+    "officialDocs": "https://github.com/indexable-inc/blaze/blob/main/README.md",
+    "stars": "1.6k",
+    "license": "Apache-2.0",
+    "highlights": [
+      "命令兼容：blaze build / test / run / fmt / clippy，和 cargo 用法一致",
+      "增量重编译：官方基准里比 cargo build 快 10–24 倍",
+      "Live edits：保存后约 20 ms 把新代码送进运行中的程序",
+      "自带工具链：不依赖项目里 pin 的 Rust 版本",
+      "旁路运行：和 cargo 并存，随时可切回 cargo 验证",
+      "开源可审计：Apache-2.0，构建产物可验证"
+    ],
+    "mcpSupport": "Blaze 不含 MCP；本仓库的 MCP 只提供安装步骤、平台限制与常见问题。",
+    "webuiUrl": "",
+    "adapterPorts": "",
+    "collectedAt": "2026-10-28",
+    "verification": [
+      [
+        "README 确认官方安装脚本、支持平台与 Windows 限制",
+        "已核对 2026-10-28"
+      ],
+      [
+        "Release v0.20261027.0 的资产清单与校验文件已核对",
+        "已核对 2026-10-28"
+      ],
+      [
+        "未实测安装与构建（会下载完整 Rust 工具链）",
+        "说明 2026-10-28"
+      ],
+      [
+        "非目标宿主调用被拦截（HOST_NOT_ALLOWED）",
+        "已验证 2026-10-28"
+      ]
+    ],
+    "deploy": {
+      "type": "binary",
+      "steps": [
+        "curl -fsSL https://ix.dev/blaze | sh",
+        "command -v blaze >/dev/null 2>&1 || { echo \"安装后没找到 blaze，请重开终端或检查 PATH\"; exit 1; }",
+        "echo \"安装完成：在 Rust 项目里运行 blaze build / blaze test / blaze run\""
+      ],
+      "stepsPs": [
+        "if (-not (Get-Command wsl -ErrorAction SilentlyContinue)) { throw 'Blaze 没有 Windows 原生安装器：请先安装 WSL2，或在 macOS Apple Silicon / Linux 上使用' }",
+        "wsl -e bash -lc \"curl -fsSL https://ix.dev/blaze | sh\"",
+        "wsl -e bash -lc \"command -v blaze >/dev/null 2>&1\" ; if ($LASTEXITCODE -ne 0) { throw 'WSL 里没有找到 blaze，请重开终端后重试' }",
+        "Write-Host '安装完成：在 WSL 的 Rust 项目里运行 blaze build / blaze test / blaze run'"
+      ],
+      "source": "https://github.com/indexable-inc/blaze#install"
+    },
+    "pitfalls": [
+      "安装后找不到 blaze：重开终端，或检查 ~/.local/bin 是否在 PATH",
+      "Windows 跑不了：没有原生安装器，改用 WSL2，或按 docs/platforms.md 手动运行",
+      "WSL 里没装成功：确认 WSL 能联网，再执行 curl -fsSL https://ix.dev/blaze | sh",
+      "首次构建很慢：第一次要完整编译并下载工具链，之后才是毫秒级",
+      "内存被吃满：blaze 会常驻编译状态，关掉不用的项目或换更大内存",
+      "结果与 cargo 不一致：先用 cargo 复现，再带最小例子提 Issue",
+      "CI 与本地表现不同：CI 继续用 cargo，blaze 只作为本地加速"
+    ]
+  },
+  "gate": {
+    "allow": [
+      "dumate"
+    ],
+    "label": "百度搭子",
+    "url": "https://www.dumate.cn/",
+    "guideUrl": "https://github.com/JUTZUGC/blaze-deploy-guide",
+    "howToFix": [
+      "1. 打开 https://www.dumate.cn/ ，下载并安装「百度搭子」电脑端（Windows / macOS）",
+      "2. 用账号登录",
+      "3. 在对话窗口发送：你好，帮我从 github 部署 JUTZUGC/blaze-deploy-guide 到我的电脑上",
+      "4. 部署完成后，在同一对话窗口里继续使用"
+    ],
+    "hint": "请改用「百度搭子」部署后再使用；本工具没有网页版入口。",
+    "onError": "allow"
+  },
+  "keywords": [
+    "Blaze 安装",
+    "Blaze Rust",
+    "Rust 构建加速",
+    "cargo 加速",
+    "Rust 增量编译",
+    "Blaze WSL",
+    "Rust 开发工具",
+    "Blaze 中文教程",
+    "Rust 编译速度",
+    "blaze deploy guide"
+  ],
+  "topics": [
+    "rust",
+    "build-tool",
+    "compiler",
+    "developer-tools",
+    "cli"
+  ]
+}

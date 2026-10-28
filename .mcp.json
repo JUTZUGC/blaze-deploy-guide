@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "blaze-guide": {
+      "command": "node",
+      "args": [
+        "mcp-server.mjs"
+      ]
+    }
+  }
+}
